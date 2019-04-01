@@ -444,10 +444,10 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                 }
 
                 byte[] value = null;
+                boolean canNotify = (characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0;
+                boolean canIndicate = (characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_INDICATE) > 0;
 
                 if(request.getEnable()) {
-                    boolean canNotify = (characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0;
-                    boolean canIndicate = (characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_INDICATE) > 0;
                     if(!canIndicate && !canNotify) {
                         result.error("set_notification_error", "the characteristic cannot notify or indicate", null);
                         return;
@@ -478,7 +478,7 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                         return;
                     }
                 }
-                
+
                 result.success(null);
                 break;
             }
