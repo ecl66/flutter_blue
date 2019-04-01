@@ -466,17 +466,19 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                     result.error("set_notification_error", "could not set characteristic notifications to :" + request.getEnable(), null);
                     return;
                 }
-
+                
                 if(!cccDescriptor.setValue(value)) {
                     result.error("set_notification_error", "error when setting the descriptor value to: " + value, null);
                     return;
                 }
 
-                if(!gattServer.writeDescriptor(cccDescriptor)) {
-                    result.error("set_notification_error", "error when writing the descriptor", null);
-                    return;
+                if(canIndicate) {
+                    if(!gattServer.writeDescriptor(cccDescriptor)) {
+                        result.error("set_notification_error", "error when writing the descriptor", null);
+                        return;
+                    }
                 }
-
+                
                 result.success(null);
                 break;
             }
