@@ -435,7 +435,7 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                     gattServer = locateGatt(request.getRemoteId());
                     characteristic = locateCharacteristic(gattServer, request.getServiceUuid(), request.getSecondaryServiceUuid(), request.getCharacteristicUuid());
                     cccDescriptor = characteristic.getDescriptor(CCCD_ID);
-                    Log('CCD_ID descriptor'  + cccDescriptor.getUuid);
+                    log(LogLevel.DEBUG, 'CCD_ID descriptor'  + cccDescriptor.getUuid);
                     // cccDescriptor = characteristic.getDescriptor()
                     if(cccDescriptor == null) {
                         throw new Exception("could not locate CCCD descriptor for characteristic: " +characteristic.getUuid().toString());
