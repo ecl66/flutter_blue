@@ -217,6 +217,17 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                 break;
             }
 
+            // case "reset":
+            // {
+            //     if (gattServer == null) 
+            //     {
+            //         return;
+            //     }
+            //     gattServer.close();
+            //     gattServer = null;
+            //     break;
+            // }
+
             case "disconnect":
             {
                 String deviceId = (String)call.arguments;
