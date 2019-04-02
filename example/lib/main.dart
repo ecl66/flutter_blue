@@ -23,6 +23,7 @@ class FlutterBlueApp extends StatefulWidget {
 
 class _FlutterBlueAppState extends State<FlutterBlueApp> {
   FlutterBlue _flutterBlue = FlutterBlue.instance;
+  
 
   /// Scanning
   StreamSubscription _scanSubscription;
@@ -45,6 +46,7 @@ class _FlutterBlueAppState extends State<FlutterBlueApp> {
   @override
   void initState() {
     super.initState();
+    _flutterBlue.setLogLevel(LogLevel.debug);
     // Immediately get the state of FlutterBlue
     _flutterBlue.state.then((s) {
       setState(() {
