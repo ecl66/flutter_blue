@@ -12,6 +12,7 @@ import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
+import android.bluetooth.BluetoothGattServer;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
@@ -26,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.util.Log;
 
@@ -154,6 +156,41 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
             case "isOn":
             {
                 result.success(mBluetoothAdapter.isEnabled());
+                break;
+            }
+
+            case "clear":
+            {
+                mBluetoothAdapter.disable();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mBluetoothAdapter.enable();
+                //                List<BluetoothDevice> devices = mBluetoothManager.getConnectedDevices(BluetoothProfile.GATT);
+//                CurrentTimeCallback callback = new CurrentTimeCallback();
+//                BluetoothGattServer gattServer = mBluetoothManager.openGattServer(getApplicationContext(), callback);
+//                if (sGattServer == null) {
+//                    Log.e(TAG, "Unable to start GATT server");
+//                    result.success(false);
+//                    break;
+//                }
+//
+//
+//                for(BluetoothDevice device : devices) {
+//                    if(device.getType() == BluetoothDevice.DEVICE_TYPE_LE) {
+//                        device.
+//                    ParcelUuid services[] =  device.getUuids();
+//                        for(ParcelUuid s : services) {
+//                            if (s.getUuid().toString().contains("569a1101-b87f-490c-92cb-11ba5ea5167c")) {
+//                                BluetoothGattServer gattServer = device.connectGatt(registrar.activity(), , mGattCallback);
+//                                gattServer.cancelConnection(device);
+//                            }
+//                        }
+//                    }
+//                }
+                result.success(true);
                 break;
             }
 

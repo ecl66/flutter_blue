@@ -110,6 +110,16 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
     } else {
       result(@(NO));
     }
+  } else if([@"clear" isEqualToString:call.method]) {
+    NSArray<CBPeripheral *> *peripherals =
+      [self.centralManager retrieveConnectedPeripheralsWithServices:  [NSArray arrayWithObjects: [CBUUID UUIDWithString:@"569a1101-b87f-490c-92cb-11ba5ea5167c"], nil]];
+    if ([peripherals count] > 0)
+    {
+        id p;
+        for (p in peripherals)
+            [self->_centralManager cancelPeripheralConnection: p];
+    }
+    result(@(YES));
   } else if([@"startScan" isEqualToString:call.method]) {
     // Clear any existing scan results
     [self.scannedPeripherals removeAllObjects];
