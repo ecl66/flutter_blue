@@ -56,7 +56,6 @@ class FlutterBlue {
   {
     return _channel
           .invokeMethod('clear')
-          .then((buffer) => new protos.BluetoothState.fromBuffer(buffer))
           .then<bool>((s) => true);
    }
 
