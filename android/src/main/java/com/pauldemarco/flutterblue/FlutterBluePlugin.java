@@ -161,13 +161,13 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
 
             case "clear":
             {
-                mBluetoothAdapter.disable();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mBluetoothAdapter.enable();
+                // mBluetoothAdapter.disable();
+                // try {
+                //     Thread.sleep(1000);
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
+                // mBluetoothAdapter.enable();
                 
                 //                List<BluetoothDevice> devices = mBluetoothManager.getConnectedDevices(BluetoothProfile.GATT);
 //                CurrentTimeCallback callback = new CurrentTimeCallback();
